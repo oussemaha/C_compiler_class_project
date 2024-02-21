@@ -1,5 +1,5 @@
 S' -> S
-S -> void main ( ){ P }
+S -> void main ( ) { P }
 P -> D I
 D -> D ; D ;
 D -> T id
