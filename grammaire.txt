@@ -1,20 +1,20 @@
 S' -> S
 S -> void main ( ) { P }
 P -> D I
-D -> D ; D ;
-D -> T id
+D -> T id ; D
+D -> T id [ nb ] ; D
+D -> ''
 T -> int
 T -> float
 T -> bool
 T -> string
-T -> int [ nb ]
-I -> I I
 I -> id = Ea ;
-I -> if ( Ec ) { I }
-I -> if ( Ec ) { I } else { I }
-I -> for ( Ef ) { I }
-I -> scanf ( F ) ;
-I -> puts ( ch ) ;
+I -> if ( Ec ) { I } I
+I -> if ( Ec ) { I } else { I } I
+I -> for ( Ef ) { I } I
+I -> scanf ( F ) ; I
+I -> puts ( ch ) ; I
+I -> ''
 Ea -> V + V
 Ea -> V - V
 Ea -> V / V
