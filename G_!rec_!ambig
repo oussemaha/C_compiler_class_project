@@ -1,0 +1,38 @@
+S -> void main ( ) { P }
+P -> D ; I ; 
+D -> T id D'
+D' -> ; D ; D'
+D' -> ''
+T -> int T'
+T -> float 
+T -> bool 
+T -> string 
+T' -> [ nb ]
+T' -> ''
+I -> id = Ea I'
+I -> if ( Ec ) { I } I"
+I -> for ( Ef ) { I } I'
+I -> scanf ( F ) I'
+I -> puts ( ch ) I'
+I' -> ; I ; I'
+I' -> ''
+I" -> I'
+I" -> else { I } I'
+Ea -> V Ea'
+Ea -> ch
+Ea' -> + V
+Ea' -> - V
+Ea' -> / V
+Ea' -> * V
+Ea' -> ''
+V -> id
+V -> nb
+Ec -> V Ec'
+Ec' -> > V
+Ec' -> == V
+Ec' -> >= V
+Ef -> int id = nb ; id <= nb ; id ++ 
+F -> " % F1 " , & id
+F1 -> d
+F1 -> f
+F1 -> s
