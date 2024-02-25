@@ -1,9 +1,9 @@
 package parserexemple;
 public enum Categorie{
     EOF,
-    VOID, MAIN, ID, TYPE_VAR, IF, ELSE, FOR, INST,
+    VOID, MAIN, ID, NB, TYPE_VAR, IF, ELSE, FOR, INST,
     PV, VI, OPARITH , PO, PF, CO,
-    CF, AO, AF, OPREL, INCREMENT,Format,
+    CF, AO, AF, OPREL,Format,
     RETURN, // Ajout pour la grammaire
     ;
       
@@ -34,7 +34,7 @@ minuscules et majuscules et renvoie « true » si les chaînes sont égales sino
      dans la liste de tous les éléments d'une énumération. Le premier numéro d'ordre est 0.
     */
     //mochkla fel part loutaneya
-    
+
     /*public boolean estTerminal() {
         return ordinal()>=MIN && ordinal()<=MAX;
     }

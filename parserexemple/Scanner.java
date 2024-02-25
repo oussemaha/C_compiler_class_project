@@ -82,7 +82,18 @@ public class Scanner {
                
 		if(caractereCourant=='<' || caractereCourant=='>' ||caractereCourant=='=')
 			return getOPRel();
-		
+		switch (caractereCourant) {
+            case '-':
+                return new UniteLexicale(Categorie.OPARITH,"-");
+            case '*':
+                return new UniteLexicale(Categorie.OPARITH,"*");
+            case '/':
+                return new UniteLexicale(Categorie.OPARITH,"/");
+            case '+':
+                caractereSuivant();
+                if (caractereCourant=='+') return new UniteLexicale(Categorie.OPARITH,"++");
+                return new UniteLexicale(Categorie.OPARITH,"+");
+        }
 		
 		return null;
 	}
@@ -328,6 +339,8 @@ public UniteLexicale getOPRel() {
 
         }
 }
+
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
