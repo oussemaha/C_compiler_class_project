@@ -1,9 +1,9 @@
 package parserexemple;
 public enum Categorie{
     EOF,
-    VOID, MAIN, ID, INT, FLOAT, BOOL, STRING, IF, ELSE, FOR, SCANF, PUTS,
-    SEMICOLON, COMMA, EQUALS, PLUS, MINUS, DIVIDE, MULTIPLY, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE,
-    CLOSE_BRACE, OPEN_BRACKET, CLOSE_BRACKET, LESS_THAN, LESS_THAN_OR_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, NOT_EQUAL, INCREMENT,
+    VOID, MAIN, ID, TYPE_VAR, IF, ELSE, FOR, INST,
+    PV, VI, OPARITH , PO, PF, CO,
+    CF, AO, AF, OPREL, INCREMENT,Format,
     RETURN, // Ajout pour la grammaire
     ;
       
@@ -33,13 +33,15 @@ minuscules et majuscules et renvoie « true » si les chaînes sont égales sino
     /*La méthode ordinal() permet de retrouver le numéro d'ordre d'un élément énuméré,
      dans la liste de tous les éléments d'une énumération. Le premier numéro d'ordre est 0.
     */
-    public boolean estTerminal() {
+    //mochkla fel part loutaneya
+    
+    /*public boolean estTerminal() {
         return ordinal()>=MIN && ordinal()<=MAX;
     }
 
     public boolean estNonTerminal() {
         return ordinal()>MAX;
-    }
+    }*/
 }
 
 

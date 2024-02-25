@@ -69,7 +69,7 @@ public class Scanner {
 		}
 		
 		if(Character.isLetter(caractereCourant))
-			return getID();
+			return get_Word();
 		
 		if(Character.isDigit(caractereCourant))
 			return getNombre();
@@ -81,13 +81,13 @@ public class Scanner {
 			return new UniteLexicale(Categorie.PV, ";");
                
 		if(caractereCourant=='<' || caractereCourant=='>' ||caractereCourant=='=')
-			return getOPPRel();
+			return getOPRel();
 		
 		
 		return null;
 	}
 	
-	public UniteLexicale getID() {
+	public UniteLexicale get_Word() {
 		int etat=0;
 		StringBuffer sb=new StringBuffer();
 		while(true) {
@@ -110,7 +110,41 @@ public class Scanner {
 			}
 		}
 	}
-	
+	public UniteLexicale detectWord( String word){
+        switch(word){
+            case "void":
+                return new UniteLexicale(Categorie.VOID,0);
+            case "main":
+                return new UniteLexicale(Categorie.MAIN, 0);
+            case "if":
+                return new UniteLexicale(Categorie.IF, 0);
+            case "else":
+                return new UniteLexicale(Categorie.ELSE, 0);
+            case "for":
+                return new UniteLexicale(Categorie.FOR, 0);
+            case "int":
+                return new UniteLexicale(Categorie.TYPE_VAR, word);
+            case "float":
+                return new UniteLexicale(Categorie.TYPE_VAR, word);
+            case "bool":
+                return new UniteLexicale(Categorie.TYPE_VAR, word);
+            case "string":
+                return new UniteLexicale(Categorie.TYPE_VAR, word);
+            case "puts":
+                return new UniteLexicale(Categorie.INST, word);
+            case "scanf":
+                return new UniteLexicale(Categorie.INST, word);
+            case "d":
+                return new UniteLexicale(Categorie.Format, word);
+            case "f":
+                return new UniteLexicale(Categorie.Format, word);
+            case "s":
+                return new UniteLexicale(Categorie.Format, word);
+            default:
+                return new UniteLexicale(Categorie.ID, word);
+        }
+
+    }
 	public UniteLexicale getNombre() {
 		int etat=0;
 		StringBuffer sb=new StringBuffer();
@@ -129,16 +163,12 @@ public class Scanner {
 							 etat=2;
 					 break;
 			case 2 : reculer();
-					 return new UniteLexicale(Categorie.NOMBRE, sb.toString());
-			case 3 : return new UniteLexicale(Categorie.NOMBRE, sb.toString());
+					 return new UniteLexicale(Categorie.NB, sb.toString());
+			case 3 : return new UniteLexicale(Categorie.NB, sb.toString());
 			}
 		}
 		
 	}
-
-
-
-
 
 
 public UniteLexicale getOPPAff() {
@@ -175,10 +205,10 @@ public UniteLexicale getOPPAff() {
                         etat = 5;
                 case 3:
                    
-                    return new UniteLexicale(Categorie.OPPAff, sb.toString());
+                    return new UniteLexicale(Categorie.OPARITH, sb.toString());
                 case 4:
                     reculer();
-                    return new UniteLexicale(Categorie.OPPAff, sb.toString());
+                    return new UniteLexicale(Categorie.OPARITH, sb.toString());
                 
                      
 
@@ -188,7 +218,7 @@ public UniteLexicale getOPPAff() {
 }
 
 
-public UniteLexicale getOPPRel() {
+public UniteLexicale getOPRel() {
         int etat = 0;
         StringBuffer sb = new StringBuffer();
         while (true) {
@@ -216,13 +246,13 @@ public UniteLexicale getOPPRel() {
 
 
                 case 1:
-                    if (eof)
-                        return new UniteLexicale(Categorie.OPPRel, "EGA");
-                        break;
-                    else 
+                    if (eof){
+                        return new UniteLexicale(Categorie.OPREL, "EGA");
+                        }
+                    else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPPRel, "EGA");
-                        
+                        return new UniteLexicale(Categorie.OPREL, "EGA");
+                    }
                     
                 
                 case 2:
@@ -237,7 +267,7 @@ public UniteLexicale getOPPRel() {
                          else
                              etat =5;
 
-                   case 2:
+                case 3:
                      if (eof)
                          break;
                     else if (caractereCourant == '=') {
@@ -259,48 +289,45 @@ public UniteLexicale getOPPRel() {
 
 
                  case 4:
-                    if (eof)
-                        return new UniteLexicale(Categorie.OPPRel, "PGE");
-                        break;
-                    else 
+                    if (eof){
+                        return new UniteLexicale(Categorie.OPREL, "PGE");
+                        }
+                    else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPPRel, "PGE");
+                        return new UniteLexicale(Categorie.OPREL, "PGE");}
                case 5:
-                    if (eof)
-                        return new UniteLexicale(Categorie.OPPRel, "PGQ");
-                        break;
-                    else 
+                    if (eof){
+                        return new UniteLexicale(Categorie.OPREL, "PGQ");
+                        }
+                    else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPPRel, "PGQ");
+                        return new UniteLexicale(Categorie.OPREL, "PGQ");}
 
                 case 6:
-                    if (eof)
-                        return new UniteLexicale(Categorie.OPPRel, "PPE");
-                        break;
-                    else 
+                    if (eof){
+                        return new UniteLexicale(Categorie.OPREL, "PPE");
+                        }
+                    else{ 
                         reculer();
-                        return new UniteLexicale(Categorie.OPPRel, "PPE");
+                        return new UniteLexicale(Categorie.OPREL, "PPE");}
                  case 7:
-                    if (eof)
-                        return new UniteLexicale(Categorie.OPPRel, "DIF");
-                        break;
-                    else 
+                    if (eof){
+                        return new UniteLexicale(Categorie.OPREL, "DIF");
+                        }
+                    else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPPRel, "DIF");
+                        return new UniteLexicale(Categorie.OPREL, "DIF");}
                  case 8:
-                    if (eof)
-                        return new UniteLexicale(Categorie.OPPRel, "PPQ");
-                        break;
-                    else 
+                    if (eof){
+                        return new UniteLexicale(Categorie.OPREL, "PPQ");
+                        }
+                    else{ 
                         reculer();
-                        return new UniteLexicale(Categorie.OPPRel, "PPQ");
-
+                        return new UniteLexicale(Categorie.OPREL, "PPQ");}
             }
 
         }
 }
-
-
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
