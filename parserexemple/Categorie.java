@@ -1,16 +1,12 @@
 package parserexemple;
 public enum Categorie{
     EOF,
-    $,
-    NUL,
-
-    ID,
-    NOMBRE,
-    PV,
-    OPPAff,
-    OPPRel,
-      
+    VOID, MAIN, ID, INT, FLOAT, BOOL, STRING, IF, ELSE, FOR, SCANF, PUTS,
+    SEMICOLON, COMMA, EQUALS, PLUS, MINUS, DIVIDE, MULTIPLY, OPEN_PAREN, CLOSE_PAREN, OPEN_BRACE,
+    CLOSE_BRACE, OPEN_BRACKET, CLOSE_BRACKET, LESS_THAN, LESS_THAN_OR_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, NOT_EQUAL, INCREMENT,
+    RETURN, // Ajout pour la grammaire
     ;
+      
 
     
 
