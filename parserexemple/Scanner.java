@@ -79,7 +79,7 @@ public class Scanner {
 			return getOPPAff();
 		
 		if(caractereCourant==';')
-			return new UniteLexicale(Categorie.PV, ";");
+			return new UniteLexicale(Categorie.PONCTUATION, ";");
                
 		if(caractereCourant=='<' || caractereCourant=='>' ||caractereCourant=='=')
 			return getOPRel();
@@ -135,15 +135,15 @@ public class Scanner {
 	public UniteLexicale detectWord( String word){
         switch(word){
             case "void":
-                return new UniteLexicale(Categorie.VOID,0);
+                return new UniteLexicale(Categorie.INST,word);
             case "main":
-                return new UniteLexicale(Categorie.MAIN, 0);
+                return new UniteLexicale(Categorie.INST, word);
             case "if":
-                return new UniteLexicale(Categorie.IF, 0);
+                return new UniteLexicale(Categorie.INST, word);
             case "else":
-                return new UniteLexicale(Categorie.ELSE, 0);
+                return new UniteLexicale(Categorie.INST, word);
             case "for":
-                return new UniteLexicale(Categorie.FOR, 0);
+                return new UniteLexicale(Categorie.INST, word);
             case "int":
                 return new UniteLexicale(Categorie.TYPE_VAR, word);
             case "float":
@@ -277,16 +277,20 @@ public UniteLexicale getOPRel() {
                         sb.append(caractereCourant);
                         caractereSuivant();
                          etat = 1;
+                         break;
 
                           } else if (caractereCourant == '>') {
                                sb.append(caractereCourant);
                                caractereSuivant();
+                               
                                etat = 2;
+                               break;
                            }
                           else if (caractereCourant == '<') {
                                sb.append(caractereCourant);
                                caractereSuivant();
                                etat = 3;
+                               break;
                            }
                         else 
                         break;
@@ -294,11 +298,11 @@ public UniteLexicale getOPRel() {
 
                 case 1:
                     if (eof){
-                        return new UniteLexicale(Categorie.OPREL, "EGA");
+                        return new UniteLexicale(Categorie.OPREL, "=");
                         }
                     else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPREL, "EGA");
+                        return new UniteLexicale(Categorie.OPREL, "=");
                     }
                     
                 
@@ -309,10 +313,10 @@ public UniteLexicale getOPRel() {
                         sb.append(caractereCourant);
                         caractereSuivant();
                         etat = 4 ;
-
                           } 
                          else
                              etat =5;
+                            break;
 
                 case 3:
                      if (eof)
@@ -321,54 +325,32 @@ public UniteLexicale getOPRel() {
                         sb.append(caractereCourant);
                         caractereSuivant();
                         etat = 6 ;
-
+                        break;
                           } 
-                      else if (caractereCourant == '>') {
-                         sb.append(caractereCourant);
-                         caractereSuivant();
-                         etat = 7 ;
-
-                          } 
-                         else
-                             etat =8;
 
 
                  case 4:
                     if (eof){
-                        return new UniteLexicale(Categorie.OPREL, "PGE");
+                        return new UniteLexicale(Categorie.OPREL, ">=");
                         }
                     else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPREL, "PGE");}
+                        return new UniteLexicale(Categorie.OPREL, ">=");}
                case 5:
                     if (eof){
-                        return new UniteLexicale(Categorie.OPREL, "PGQ");
+                        return new UniteLexicale(Categorie.OPREL, ">");
                         }
                     else {
                         reculer();
-                        return new UniteLexicale(Categorie.OPREL, "PGQ");}
+                        return new UniteLexicale(Categorie.OPREL, ">");}
 
                 case 6:
                     if (eof){
-                        return new UniteLexicale(Categorie.OPREL, "PPE");
+                        return new UniteLexicale(Categorie.OPREL, "<=");
                         }
                     else{ 
                         reculer();
-                        return new UniteLexicale(Categorie.OPREL, "PPE");}
-                 case 7:
-                    if (eof){
-                        return new UniteLexicale(Categorie.OPREL, "DIF");
-                        }
-                    else {
-                        reculer();
-                        return new UniteLexicale(Categorie.OPREL, "DIF");}
-                 case 8:
-                    if (eof){
-                        return new UniteLexicale(Categorie.OPREL, "PPQ");
-                        }
-                    else{ 
-                        reculer();
-                        return new UniteLexicale(Categorie.OPREL, "PPQ");}
+                        return new UniteLexicale(Categorie.OPREL, "<=");}
             }
 
         }

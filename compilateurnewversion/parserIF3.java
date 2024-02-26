@@ -1,54 +1,49 @@
 package compilateurnewversion;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Stack;
 
 public class parserIF3 {
 
 
 public String[] LRGS = {
-"S' -> S",
-"S -> void main ( ) { P }",
-"P -> D ; I ;",
-"D -> T id",
-"D -> D ; D ;",
-"T -> int",
-"T -> float",
-"T -> bool",
-"T -> string",
-"T -> int [ nb ]",
-"I -> id := Ea",
-"I -> if ( Ec ) { I }",
-"I -> if ( Ec ) { I } else { I }",
-"I -> for ( Ef ) { I }",
-"I -> scanf ( F )",
-"I -> puts ( ch )",
-"I -> I ; I ;",
-"Ea -> V",
-"Ea -> ch",
-"Ea -> V + V",
-"Ea -> V - V",
-"Ea -> V / V",
-"Ea -> V * V",
-"V -> id",
-"V -> nb",
-"Ec -> V > V",
-"Ec -> V = V",
-"Ec -> V >= V",
-"Ef -> int id := nb ; id <= nb ; id ++",
-"F -> '% F1' , & id",
-"F1 -> d",
-"F1 -> f",
-"F1 -> s"
+"S'->S",
+"S->void main ( ) { P }",
+"P->D ; I ;",
+"D->T id",
+"D->D ; D ;",
+"T->int",
+"T->float",
+"T->bool",
+"T->string",
+"T->int [ nb ]",
+"I->id := Ea",
+"I->if ( Ec ) { I }",
+"I->if ( Ec ) { I } else { I }",
+"I->for ( Ef ) { I }",
+"I->scanf ( F )",
+"I->puts ( ch )",
+"I->I ; I ;",
+"Ea->V",
+"Ea->ch",
+"Ea->V + V",
+"Ea->V - V",
+"Ea->V / V",
+"Ea->V * V",
+"V->id",
+"V->nb",
+"Ec->V > V",
+"Ec->V = V",
+"Ec->V >= V",
+"Ef->int id := nb ; id <= nb ; id ++",
+"F->' % F1 ' , & id",
+"F1->d",
+"F1->f",
+"F1->s"
    		};
 
 
 public String[][] tableSLR = {
-    {"etat/VT", "void", "main", "(", ")", "{", "}", ";", "id", "int", "float", "bool", "string", "[", "nb", "]", "=", "if", "else", "for", "scanf", "puts", "ch", "+", "-", "/", "*", ">", "==", ">=", "<=", "++", "'", "%", ",", "&", "d", "f", "s", "$", "S'", "S", "P", "D", "T", "I", "Ea", "V", "Ec", "Ef", "F", "F1"},
+    {"etat/VT", "void", "main", "(", ")", "{", "}", ";", "id", "int", "float", "bool", "string", "[", "nb", "]", ":=", "if", "else", "for", "scanf", "puts", "ch", "+", "-", "/", "*", ">", "==", ">=", "<=", "++", "'", "%", ",", "&", "d", "f", "s", "$", "S'", "S", "P", "D", "T", "I", "Ea", "V", "Ec", "Ef", "F", "F1"},
     {"0", "s2", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "1", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err"},
     {"1", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "ACC", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err"},
     {"2", "err", "s3", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err", "err"},
@@ -152,7 +147,7 @@ public String[][] tableSLR = {
     public Stack<String> analyse = new Stack<>();
     
     public Stack<String> stackSymbol = new Stack<>();
-    String ch[]= {"a", "b", "b", "a","$"};
+    private String ch[]= {"a", "b", "b", "a","$"};
     public String strInput ;
     
    
@@ -161,7 +156,9 @@ public String[][] tableSLR = {
     
     
     int index = 0;
-
+    public parserIF3( String[] ch){
+        this.ch=ch;
+    }
    
     public void analyzeSLnew() {
     	
@@ -198,7 +195,7 @@ public String[][] tableSLR = {
             // Réduction
             else if (Action(s,ch[index]).charAt(0) == 'r') {
                 //
-                String str = LRGS[Integer.parseInt(Action(s, ch[index]).substring(1)) - 1];
+                String str = LRGS[Integer.parseInt(Action(s, ch[index]).substring(1))];
                 int pos= str.indexOf('>');
                
                 String tabparties[]= str.split("->");
@@ -211,13 +208,12 @@ public String[][] tableSLR = {
                 //System.out.println("Partiedroite"+Partiedroite); 
                 
                 String tabtoken[]= Partiedroite.split(" ");
-                int taillepile= tabtoken.length +tabtoken.length;
+
+                int taillepile= tabtoken.length*2 ;
                
                
                 for (int i = 0; i < taillepile; i++) {
-                	
-                  
-                    
+
                     analyse.pop();
                     
                 }
@@ -241,7 +237,7 @@ public String[][] tableSLR = {
             	//erreur
             	{
             	
-            	//System.out.println("texterreur"+Action(s,ch[index])+s+ch[index]+index); 
+            	System.out.println("texterreur"+Action(s,ch[index])+s+ch[index]+index); 
             	System.out.println("analyze SLR failled"); 
         	break;
             	}
@@ -350,9 +346,9 @@ public String[][] tableSLR = {
     
     
     public String Action(String s, String a) {
-        for (int i = 1; i <11 ; i++)
+        for (int i = 1; i <95 ; i++)
             if (tableSLR[i][0].equals(s))
-                for (int j = 1; j <7; j++)
+                for (int j = 1; j <51; j++)
                     if (tableSLR[0][j].equals(a))
                         return tableSLR[i][j];
         return "err";

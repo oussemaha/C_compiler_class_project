@@ -2,9 +2,9 @@ package parserexemple;
 
 
 public class UniteLexicale {
-    private Categorie categorie;
-    private Object lexeme;
-    private int idVar=-1;
+    public Categorie categorie;
+    public Object lexeme;
+    public int idVar=-1;
     public UniteLexicale(Categorie categorie, Object lexeme, int idVar) {
         this.categorie=categorie;
         this.lexeme=lexeme;
@@ -24,4 +24,5 @@ public class UniteLexicale {
             return categorie.toString()+"\t"+lexeme;
         return categorie.toString()+"\t"+lexeme+"\t"+idVar+"#";
     }
+
 }

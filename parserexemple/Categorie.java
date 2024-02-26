@@ -1,8 +1,8 @@
 package parserexemple;
 public enum Categorie{
     EOF,
-    VOID, MAIN, ID, NB, TYPE_VAR, IF, ELSE, FOR, INST,
-    PV, VI, OPARITH , OPREL,Format, PONCTUATION,
+    ID, NB, TYPE_VAR, INST,
+    OPARITH , OPREL,Format, PONCTUATION,
     RETURN, // Ajout pour la grammaire
     ;
       
