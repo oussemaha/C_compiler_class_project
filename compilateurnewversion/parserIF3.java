@@ -21,7 +21,7 @@ public String[] LRGS = {
 "T -> bool",
 "T -> string",
 "T -> int [ nb ]",
-"I -> id = Ea",
+"I -> id := Ea",
 "I -> if ( Ec ) { I }",
 "I -> if ( Ec ) { I } else { I }",
 "I -> for ( Ef ) { I }",
@@ -37,9 +37,9 @@ public String[] LRGS = {
 "V -> id",
 "V -> nb",
 "Ec -> V > V",
-"Ec -> V == V",
+"Ec -> V = V",
 "Ec -> V >= V",
-"Ef -> int id = nb ; id <= nb ; id ++",
+"Ef -> int id := nb ; id <= nb ; id ++",
 "F -> '% F1' , & id",
 "F1 -> d",
 "F1 -> f",
@@ -431,16 +431,7 @@ public String[][] tableSLR = {
         }
         System.out.println("**********Fin tableau SLR********");
 
-    }
-    
-   
- 
-
-    
-    
-    
-    
-    
+    }   
 
 }
 
