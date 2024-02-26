@@ -1,10 +1,5 @@
 package compilateurnewversion;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
 import parserexemple.Scanner;
 import parserexemple.UniteLexicale;
 
@@ -35,10 +30,10 @@ public class Main {
 		 ch[ch.length-1]="$";
     	System.out.println("***********************Analyse Syntaxique*************************");	 
     	 
-		 parserIF3 test22 = new parserIF3(ch);
+		 parserIF3 analSyn = new parserIF3(ch);
     	
         
-        test22.analyzeSLnew();
+        analSyn.analyzeSLnew();
         
     }
 	public static void addItemToStringArray( String newItem){ 
@@ -51,4 +46,3 @@ public class Main {
        ch=ch1;
     }
 }
-

@@ -176,9 +176,7 @@ public String[][] tableSLR = {
         {
               
             String s = analyse.peek();
-            
-            String act=Action(s,ch[index]);
-          
+                  
             if (Action(s,ch[index]).charAt(0) == 's') {
                    	
                            
@@ -196,7 +194,6 @@ public String[][] tableSLR = {
             else if (Action(s,ch[index]).charAt(0) == 'r') {
                 //
                 String str = LRGS[Integer.parseInt(Action(s, ch[index]).substring(1))];
-                int pos= str.indexOf('>');
                
                 String tabparties[]= str.split("->");
                 
@@ -266,10 +263,7 @@ public String[][] tableSLR = {
     	   
           //  String s = stackState.peek();
             
-            String s = analyse.peek();
-            
-            String act=Action(s,tt[index]);
-          
+            String s = analyse.peek();          
             if (Action(s,tt[index]).charAt(0) == 's') {
             	
             	
@@ -291,7 +285,6 @@ public String[][] tableSLR = {
             else if (Action(s,tt[index]).charAt(0) == 'r') {
                 //
                 String str = LRGS[Integer.parseInt(Action(s, tt[index]).substring(1)) - 1];
-                int pos= str.indexOf('>');
                
                 String tabparties[]= str.split("->");
                 
@@ -315,7 +308,6 @@ public String[][] tableSLR = {
                 }
                 String sommetpile = analyse.peek();
                 analyse.push(Partiegauche);
-                String tetesucc = analyse.peek();
                 
                 analyse.push(Action(sommetpile, Partiegauche));
                 
