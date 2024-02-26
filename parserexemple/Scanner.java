@@ -15,10 +15,11 @@ Alors que des éléments peuvent être ajoutés et supprimés d'un ArrayListfich
 */
 
 public class Scanner {
-    private ArrayList<Character> fluxCaracteres;
+    public ArrayList<Character> fluxCaracteres;
     private int indiceCourant;
     private char caractereCourant;
-    private boolean eof;
+    public boolean eof;
+    private String[] vars={};
 
     public Scanner() {
         this("");
@@ -83,8 +84,18 @@ public class Scanner {
 		if(caractereCourant=='<' || caractereCourant=='>' ||caractereCourant=='=')
 			return getOPRel();
 		switch (caractereCourant) {
-            case '-':
-                return new UniteLexicale(Categorie.OPARITH,"-");
+            case '(':
+                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+            case ')':
+                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+            case '{':
+                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+            case '}':
+                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+            case ',':
+                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+            case '\'':
+                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
             case '*':
                 return new UniteLexicale(Categorie.OPARITH,"*");
             case '/':
@@ -116,8 +127,8 @@ public class Scanner {
 								 etat=2;
 						 break;
 				case 2 : reculer();
-						 return new UniteLexicale(Categorie.ID, sb.toString());
-				case 3 : return new UniteLexicale(Categorie.ID, sb.toString());
+						 return detectWord(sb.toString());
+				case 3 : return detectWord(sb.toString());
 			}
 		}
 	}
@@ -152,9 +163,34 @@ public class Scanner {
             case "s":
                 return new UniteLexicale(Categorie.Format, word);
             default:
-                return new UniteLexicale(Categorie.ID, word);
+                return treatID(word);
         }
 
+    }
+    public UniteLexicale treatID(String name){
+        int index=findIndexInStringArray( name);
+        if(index!=-1){
+            return new UniteLexicale(Categorie.ID,name,index);
+        }
+        addItemToStringArray(name);
+        return new UniteLexicale(Categorie.ID,name,vars.length-1);
+    } 
+    public void addItemToStringArray( String newItem){ 
+        String[] vars1 = new String[vars.length + 1];
+
+        for (int i = 0; i < vars.length; i++) {
+            vars1[i] = vars[i];
+        }
+        vars1[vars.length]=newItem;
+       vars=vars1;
+    }
+    public  int findIndexInStringArray( String item) {
+        for (int i = 0; i < vars.length; i++) {
+            if (vars[i].equals(item)) {
+                return i;
+            }
+        }
+        return -1;
     }
 	public UniteLexicale getNombre() {
 		int etat=0;
@@ -180,7 +216,7 @@ public class Scanner {
 		}
 		
 	}
-
+   
 
 public UniteLexicale getOPPAff() {
         int etat = 0;
@@ -295,8 +331,6 @@ public UniteLexicale getOPRel() {
                           } 
                          else
                              etat =8;
-
-
 
 
                  case 4:
