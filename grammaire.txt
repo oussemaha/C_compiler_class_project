@@ -24,9 +24,9 @@ Ea -> V * V
 V -> id
 V -> nb
 Ec -> V > V
-Ec -> V == V
+Ec -> V = V
 Ec -> V >= V
-Ef -> int id = nb ; id <= nb ; id ++
+Ef -> int id := nb ; id <= nb ; id ++
 F -> '% F1' , & id
 F1 -> d
 F1 -> f
