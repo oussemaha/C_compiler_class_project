@@ -1,8 +1,8 @@
-package compilateurnewversion;
+package anaSyn;
 
 import java.util.Stack;
 
-public class parserIF3 {
+public class anaSLR {
 
 
 public String[] LRGS = {
@@ -156,7 +156,7 @@ public String[][] tableSLR = {
     
     
     int index = 0;
-    public parserIF3( String[] ch){
+    public anaSLR( String[] ch){
         this.ch=ch;
     }
    

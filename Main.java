@@ -1,7 +1,7 @@
-package compilateurnewversion;
 
-import parserexemple.Scanner;
-import parserexemple.UniteLexicale;
+import anaLex.Scanner;
+import anaLex.UniteLexicale;
+import anaSyn.anaSLR;
 
 public class Main {
 	static String  ch[]= {};
@@ -30,7 +30,7 @@ public class Main {
 		 ch[ch.length-1]="$";
     	System.out.println("***********************Analyse Syntaxique*************************");	 
     	 
-		 parserIF3 analSyn = new parserIF3(ch);
+		 anaSLR analSyn = new anaSLR(ch);
     	
         
         analSyn.analyzeSLnew();
