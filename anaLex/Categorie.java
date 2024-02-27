@@ -1,4 +1,4 @@
-package parserexemple;
+package anaLex;
 public enum Categorie{
     EOF,
     ID, NB, TYPE_VAR, INST,

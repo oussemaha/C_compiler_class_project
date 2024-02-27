@@ -1,4 +1,4 @@
-package parserexemple;
+package anaLex;
 
 
 public class UniteLexicale {
