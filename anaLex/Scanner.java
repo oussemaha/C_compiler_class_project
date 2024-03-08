@@ -95,9 +95,11 @@ public class Scanner {
             case ',':
                 return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
             case '\'':
-                return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+                return ch();
             case '*':
                 return new UniteLexicale(Categorie.OPARITH,"*");
+            case '%':
+                return new UniteLexicale(Categorie.Format,"%");
             case '/':
                 return new UniteLexicale(Categorie.OPARITH,"/");
             case '+':
@@ -108,7 +110,21 @@ public class Scanner {
 		
 		return null;
 	}
-	
+	public UniteLexicale ch(){
+        StringBuffer ch = new StringBuffer();
+        caractereSuivant();
+        if (Character.isWhitespace(caractereCourant)){
+            return new UniteLexicale(Categorie.PONCTUATION,caractereCourant);
+        }
+        else{
+            while (caractereCourant!='\''){
+                ch.append(caractereCourant);
+                caractereSuivant();
+            }
+            return new UniteLexicale(Categorie.CH,ch);
+        }
+
+    }
 	public UniteLexicale get_Word() {
 		int etat=0;
 		StringBuffer sb=new StringBuffer();

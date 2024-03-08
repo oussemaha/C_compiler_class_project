@@ -27,7 +27,7 @@ Ec -> V > V
 Ec -> V = V
 Ec -> V >= V
 Ef -> int id := nb ; id <= nb ; id ++
-F -> '% F1' , & id
+F -> ' % F1 ' , & id
 F1 -> d
 F1 -> f
 F1 -> s

@@ -1,7 +1,7 @@
 package anaLex;
 public enum Categorie{
     EOF,
-    ID, NB, TYPE_VAR, INST,
+    ID,CH, NB, TYPE_VAR, INST,
     OPARITH , OPREL,Format, PONCTUATION,
     RETURN, // Ajout pour la grammaire
     ;

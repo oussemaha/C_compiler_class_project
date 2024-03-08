@@ -25,6 +25,9 @@ public class Main {
 			else if ( temp.categorie.toString().equals("nb") ){
 				addItemToStringArray("nb");
 			}
+			else if ( temp.categorie.toString().equals("ch") ){
+				addItemToStringArray("ch");
+			}
 			else addItemToStringArray(temp.lexeme.toString());
 		 }
 		 ch[ch.length-1]="$";
